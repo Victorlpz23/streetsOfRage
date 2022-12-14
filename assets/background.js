@@ -5,7 +5,7 @@ class Background {
         this.y = 0
         this.w = ctx.canvas.width
         this.h = ctx.canvas.height
-        this.vx = -0.5
+        this.vx = 0
         this.vy = 0 
 
         this.image = new Image()
@@ -13,8 +13,8 @@ class Background {
     }
 
     drawBack() {
-     this.ctx.drawImage(this.image, 0, 0, 400, 400, this.x, this.y, this.w, this.h)
-     this.ctx.drawImage(this.image, 0, 0, 400, 400, this.x + this.w, this.y, this.w, this.h)
+     this.ctx.drawImage(this.image, 0, 0, 200, 200, this.x, this.y, this.w, this.h)
+     this.ctx.drawImage(this.image, 0, 0, 200, 200, this.x + this.w, this.y, this.w, this.h)
     }
 
     moveBack() {

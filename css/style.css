@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: black;
+  }
+
+ 
+  .container {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    top: 100;
+    left: 100;
+    transform: translate(0, 0);
+  }
+
+  
+  h1 {
+    color: white;
+  }
+
+  
+  canvas {
+    border: 1px solid white;
+    border-radius: 4px;
+    display: none;
+  }

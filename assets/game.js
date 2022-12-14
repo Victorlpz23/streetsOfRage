@@ -5,9 +5,11 @@ class Game {
         this.ax = new Axel(ctx)
         this.en = new Enemy(ctx)
         this.interval = null
+        this.tick = 60 * 5
     }
 
     start() {
+        this.initListeners()
         this.interval = setInterval(() => {
             this.clear()
             this.draw()
@@ -15,10 +17,21 @@ class Game {
         }, 1000 / 60)
     }
 
+    initListeners() {
+        document.onkeydown = (e) => {
+          this.ax.onKeyDown(e.keyCode)
+        }
+    
+        document.onkeyup = (e) => {
+          this.ax.onKeyUp(e.keyCode)
+        }
+      }
+
     move() {
      this.bg.moveBack()
      this.ax.moveAxel() 
      this.en.moveEne()
+    //  this.ax.animateAxel()
     }
 
     draw() {
