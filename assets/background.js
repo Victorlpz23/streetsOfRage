@@ -20,5 +20,9 @@ class Background {
     moveBack() {
      this.x += this.vx
      this.y += this.vy
+
+     if (this.x <= -this.w) {
+        this.x = 0
+      }
     }
 }

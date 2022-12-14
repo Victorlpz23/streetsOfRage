@@ -1,10 +1,10 @@
 class Axel {
     constructor (ctx) {
       this.ctx = ctx
-      this.x = 50
+      this.x = 20
       this.y = 80
-      this.w = 70
-      this.h = 70
+      this.w = 60
+      this.h = 60
       this.vx = 0
       this.vy = 0
       this.ax = 0

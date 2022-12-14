@@ -3,6 +3,7 @@ class Game {
         this.ctx = ctx
         this.bg = new Background(ctx)
         this.ax = new Axel(ctx)
+        this.en = new Enemy(ctx)
         this.interval = null
     }
 
@@ -17,11 +18,13 @@ class Game {
     move() {
      this.bg.moveBack()
      this.ax.moveAxel() 
+     this.en.moveEne()
     }
 
     draw() {
      this.bg.drawBack()
      this.ax.drawAxel()
+     this.en.drawEne()
     }
 
     clear() {
