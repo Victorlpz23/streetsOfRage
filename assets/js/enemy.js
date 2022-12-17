@@ -2,10 +2,11 @@ class Enemy {
  constructor(ctx) {
     this.ctx = ctx
     this.x = 500
-    this.y = 180
-    this.w = 100
+    this.y = 200
+    this.y0 = 200
+    this.w = 90
     this.h = 100
-    this.y0 = 180
+    this.y0 = 200
     this.vx = -1
     this.vy = 0
     this.ax = 0
@@ -19,7 +20,8 @@ class Enemy {
     this.tick = 0
  }
  
- drawEne() {
+ draw() {
+    this.ctx.imageSmoothingEnabled = false
     this.ctx.drawImage(
         this.img,
         this.img.frameIndex * this.img.width / this.img.frames,
@@ -32,10 +34,10 @@ class Enemy {
         this.h
       )
 
-      this.animateEne()
+      this.animate()
     }
  
- moveEne() {
+ move() {
     this.x += this.vx
     this.y += this.vy
 
@@ -53,10 +55,14 @@ class Enemy {
         this.vx = 0
         this.x = this.ctx.canvas.width - this.w
       }
+
+      if (this.x === this.ax.x && this.y === this.ax.y) {
+        this.vx = 0
+      }
   }
  
 
- animateEne() {
+ animate() {
     this.tick++
     
     if (this.tick > 15) {

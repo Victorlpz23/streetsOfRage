@@ -1,0 +1,29 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: black;
+}
+
+
+.container {
+  position: relative;
+  text-align: center;
+  background-image: "/assets/resources/background.jpg";
+  display: flex;
+  justify-content: center;
+  padding-top: 150px;
+}
+
+
+h1 {
+  color: white;
+}
+
+
+canvas {
+  border: 1px solid white;
+  display: none;
+}
