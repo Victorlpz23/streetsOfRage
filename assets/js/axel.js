@@ -35,15 +35,21 @@ class Axel {
       this.jumpImg.frameIndex = 0
       this.jumpImg.tick = 0
 
+      this.jumpRe = new Image()
+      this.jumpRe.src ="../../assets/resources/jumpReverse.png"
+      this.jumpRe.frames = 2
+      this.jumpRe.frameIndex = 0
+      this.jumpRe.tick = 0
+
       this.punching = new Image()
       this.punching.src ="../../assets/resources/punch.png"
-      this.punching.frames = 3
+      this.punching.frames = 2
       this.punching.frameIndex = 0
       this.punching.tick = 0
       this.animatePunchTick = 0
 
-      this.jumpAudio = new Audio('../assets/resources/jump.wav')
-      this.jumpAudio.volume = 0.5
+      // this.jumpAudio = new Audio('../assets/resources/jump.wav')
+      // this.jumpAudio.volume = 0.5
 
       this.isPunching = false
     }
@@ -62,7 +68,7 @@ class Axel {
         this.w,
         this.h)
        
-     } else if (this.vx > 0 && this.y === this.y0) {
+     } if (this.vx > 0 && this.y === this.y0) {
       this.ctx.drawImage(
         this.walking,
         this.walking.frameIndex * this.walking.width / this.walking.frames,
@@ -73,8 +79,9 @@ class Axel {
         this.y,
         this.w,
         this.h)
-        this.animate()
-     } else if (this.vx < 0 && this.y === this.y0) {
+        this.animateWalk()
+
+     }  if (this.vx < 0 && this.y === this.y0) {
       this.ctx.drawImage(
         this.back,
         this.back.frameIndex * this.back.width / this.back.frames,
@@ -85,9 +92,9 @@ class Axel {
         this.y,
         this.w,
         this.h)
-        this.animate3()
-    } 
-    if(this.y < this.y0) {
+        this.animateBack()
+
+    } if(this.y < this.y0 && this.vx >= 0) {
       this.ctx.drawImage(
         this.jumpImg,
         this.jumpImg.frameIndex * this.jumpImg.width / this.jumpImg.frames,
@@ -99,7 +106,21 @@ class Axel {
         this.w,
         this.h)
         this.animateJump()
-    } if(this.isPunching === true) {
+
+    } if(this.vx < 0 && this.y < this.y0) {
+        this.ctx.drawImage(
+        this.jumpRe,
+        this.jumpRe.frameIndex * this.jumpRe.width / this.jumpRe.frames,
+        0,
+        this.jumpRe.width / this.jumpRe.frames,
+        this.jumpRe.height,
+        this.x,
+        this.y,
+        this.w,
+        this.h)
+        this.animateJumpRe()
+
+    } if(this.isPunching === true && this.y === this.y0 && this.vx === 0) {
       this.punching.tick++
       this.ctx.drawImage(
         this.punching,
@@ -112,13 +133,13 @@ class Axel {
         this.w,
         this.h)
         this.punch()
-      if (this.punching.tick > 45) {
+
+      } if (this.punching.tick > 45) {
         this.punching.tick = 0
         this.isPunching = false
       }
-     
     }
-  }
+  
 
 
     move() {
@@ -130,16 +151,16 @@ class Axel {
      if (this.y >= this.y0) {
       this.y = this.y0
       this.vy = 0
-    } else if (this.x <= 0) {
+    } if (this.x <= 0) {
       this.vx = 0
       this.x = 0
-    } else if (this.x + this.w >= this.ctx.canvas.width) {
+    } if (this.x + this.w >= this.ctx.canvas.width) {
       this.vx = 0
       this.x = this.ctx.canvas.width - this.w
     }
     }
 
-    animate() {
+    animateWalk() {
       this.walking.tick++
       
       if (this.walking.tick > 15) {
@@ -152,19 +173,7 @@ class Axel {
       }
     }
 
-    // animate2() {
-    //   this.tick2++
-    //   if (this.tick2 > 15) {
-    //     this.tick2 = 0
-    //     this.quiet.frameIndex++
-    
-    //     if (this.quiet.frameIndex > this.quiet.frames - 1) {
-    //         this.quiet.frameIndex = 0
-    //       }  
-    // }
-    // }
-
-    animate3() {
+    animateBack() {
       this.back.tick++
       if (this.back.tick > 15) {
         this.back.tick = 0
@@ -188,16 +197,28 @@ class Axel {
       }
     }
 
+    animateJumpRe() {
+      this.jumpRe.tick++
+      if (this.jumpRe.tick > 15) {
+          this.jumpRe.tick = 0
+          this.jumpRe.frameIndex++
+      
+          if (this.jumpRe.frameIndex > this.jumpRe.frames -1) {
+              this.jumpRe.frameIndex = 0
+            }  
+      }
+    }
+
     jump() {
       if(this.y === this.y0) {
         this.vy = -10
-        this.jumpAudio.play()
+        // this.jumpAudio.play()
       }
    }
 
    punch() {
     this.animatePunchTick++
-    if (this.animatePunchTick > 15) {
+    if (this.animatePunchTick > 20) {
       this.animatePunchTick = 0
       this.punching.frameIndex++
   
@@ -207,9 +228,6 @@ class Axel {
     }
   }
 
-
-    
-     
 
 
     onKeyDown(key) {
@@ -235,6 +253,9 @@ class Axel {
         case LEFT:
           this.vx = 0
           break;
+        // case SPACE:
+        //   this.isPunching = false
+        //   break;
         }
     }
   

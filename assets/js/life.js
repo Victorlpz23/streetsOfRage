@@ -15,17 +15,22 @@ class Life {
         this.ctx.lineWidth = 5
         this.ctx.strokeRect(0, 0, this.ctx.canvas.width, 60)
         this.ctx.fillStyle = 'white'
-        this.ctx.font = '15px sans-serif'
+        this.ctx.font = '15px press-start-2p'
         this.ctx.fillText('PRESS 2UP START', 400, 35)
-        this.ctx.font = '20px sans-serif'
+        this.ctx.font = '20px press-start-2p'
         this.ctx.fillText('TIME', 280, 20)
         this.ctx.fillStyle = 'white'
         this.ctx.fillRect(20, 30, 200, 10)
         this.ctx.fillStyle = 'darkred'
-        this.ctx.fillRect(20, 30, 100, 10)
-
+        this.ctx.fillRect(20, 30, 190, 10)
+        this.ctx.fillStyle = 'white'
+        this.ctx.font = '18px press-start-2p'
+        this.ctx.fillText('1 UP-003100', 20, 25)
+        this.ctx.fillStyle = 'white'
+        this.ctx.font = '25px press-start-2p'
+        this.ctx.fillText('x3', 223, 40)
+        
     }
-
 
 
 }

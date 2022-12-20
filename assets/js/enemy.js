@@ -18,10 +18,17 @@ class Enemy {
     this.img.frames = 4
     this.img.frameIndex = 0
     this.tick = 0
+
+    this.punch = new Image()
+    this.punch.src = "../../assets/resources/ePunch.png"
+    this.punch.frames = 2
+    this.punch.frameIndex = 0
+    this.punch.tick = 0
  }
  
  draw() {
     this.ctx.imageSmoothingEnabled = false
+    if (this.vx < 0) {
     this.ctx.drawImage(
         this.img,
         this.img.frameIndex * this.img.width / this.img.frames,
@@ -33,8 +40,24 @@ class Enemy {
         this.w,
         this.h
       )
+      this.animateWalk()
+    }
 
-      this.animate()
+      if (this.vx === 0) {
+        this.ctx.drawImage(
+        this.punch,
+        this.punch.frameIndex * this.punch.width / this.punch.frames,
+        0,
+        this.punch.width / this.punch.frames,
+        this.punch.height,
+        this.x,
+        this.y,
+        140,
+        this.h,
+      )
+       this.animatePunch()
+      }
+
     }
  
  move() {
@@ -62,7 +85,7 @@ class Enemy {
   }
  
 
- animate() {
+ animateWalk() {
     this.tick++
     
     if (this.tick > 15) {
@@ -71,8 +94,20 @@ class Enemy {
     
         if (this.img.frameIndex > this.img.frames - 1) {
             this.img.frameIndex = 0
-          }  
-        }
-      }
+        }  
+    }
+  }
 
+  animatePunch() {
+    this.punch.tick++
+    
+    if (this.punch.tick > 20) {
+        this.punch.tick = 0
+        this.punch.frameIndex++
+    
+        if (this.punch.frameIndex > this.punch.frames - 1) {
+            this.punch.frameIndex = 0
+        }  
+    }
+  }
  }

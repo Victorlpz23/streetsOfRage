@@ -11,15 +11,8 @@ body {
 .container {
   position: relative;
   text-align: center;
-  background-image: "/assets/resources/background.jpg";
-  display: flex;
-  justify-content: center;
   padding-top: 150px;
-}
-
-
-h1 {
-  color: white;
+  padding-left: 600px;
 }
 
 

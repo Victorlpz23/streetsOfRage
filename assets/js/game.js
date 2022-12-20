@@ -6,7 +6,6 @@ class Game {
         this.en = new Enemy(ctx)
         this.lf = new Life(ctx)
         this.interval = null
-        this.tick = 60 * 5
         // this.audio = new Audio("../assets/resources/Fighting.mp3")
         // this.audio.volume = 0.5
     }
@@ -36,7 +35,6 @@ class Game {
      this.bg.move()
      this.ax.move() 
      this.en.move()
-     this.ax.animate()
     }
 
     draw() {
@@ -51,11 +49,14 @@ class Game {
     }
 
     checkCollisions() {
-        if (this.en.x === this.ax.x +35 && this.en.y === this.ax.y) {
-            this.en.vx = 0
-          }
-        if (this.ax.x === this.en.x -3535 && this.ax.y === this.en.y) {
-            this.ax.vx = 0
-        }
+      const colX = this.en.x -35 === this.ax.x
+      const colY = this.ax.y === this.en.y
+     if (colX && colY) {
+        this.en.vx = 0
+        this.ax.vx = 0
+        // delete this.en
+       }
     }
+
+    
 }
