@@ -3,59 +3,86 @@ class Game {
         this.ctx = ctx
         this.bg = new Background(ctx)
         this.ax = new Axel(ctx)
-        this.en = new Enemy(ctx)
+        this.en = []
+        this.tick = 60 * 5
+
         this.lf = new Life(ctx)
         this.interval = null
-        // this.audio = new Audio("../assets/resources/Fighting.mp3")
-        // this.audio.volume = 0.5
+        this.audio = new Audio("../assets/resources/Fighting.mp3")
+        this.audio.volume = 0.5
     }
 
     start() {
-      // this.audio.play()
+      this.audio.play()
       this.initListeners()
+
       this.interval = setInterval(() => {
           this.clear()
           this.draw()
           this.checkCollisions()
           this.move()
+          this.addEnemy()
         }, 1000 / 60)
     }
 
     initListeners() {
         document.onkeydown = (e) => {
           this.ax.onKeyDown(e.keyCode)
+          this.checkCollisions(e.keyCode)
         }
+
+        // if(event.key ===  " "){
+        //   this.checkCollisions()
+        // }
     
         document.onkeyup = (e) => {
           this.ax.onKeyUp(e.keyCode)
         }
       }
 
+    addEnemy() {
+      this.tick--
+      
+      if (this.tick <= 0) {
+        this.tick = 400 + Math.random() * 40
+        this.en.push(new Enemy(this.ctx))
+      }
+    }
+
     move() {
      this.bg.move()
      this.ax.move() 
-     this.en.move()
+     this.en.forEach(e => e.move())
     }
 
     draw() {
      this.bg.draw()
      this.ax.draw()
-     this.en.draw()
+     this.en.forEach(e => e.draw())
      this.lf.draw()
     }
 
     clear() {
+     this.en = this.en.filter(e => e.isVisible())
+
      this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
     }
 
-    checkCollisions() {
-      const colX = this.en.x -35 === this.ax.x
-      const colY = this.ax.y === this.en.y
-     if (colX && colY) {
-        this.en.vx = 0
-        this.ax.vx = 0
-        // delete this.en
-       }
+    checkCollisions(keyCode) {
+      for (let i = 0; i < this.en.length; i++) {
+         const e = this.en[i]
+         const colX = e.x - 35 <= this.ax.x && this.ax.x <= e.x +35
+         const colY = this.ax.y === e.y
+         if (colX && colY) {
+          e.vx = 0
+          this.ax.vx = 0
+
+          if(keyCode === SPACE) {
+          this.en.splice(i, 1)
+          }
+         }
+      }
+    
     }
 
     

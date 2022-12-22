@@ -48,10 +48,11 @@ class Axel {
       this.punching.tick = 0
       this.animatePunchTick = 0
 
-      // this.jumpAudio = new Audio('../assets/resources/jump.wav')
-      // this.jumpAudio.volume = 0.5
+      this.jumpAudio = new Audio('../assets/resources/jump.wav')
+      this.jumpAudio.volume = 0.5
 
       this.isPunching = false
+      let health = 100 
     }
 
     draw() {
@@ -212,7 +213,7 @@ class Axel {
     jump() {
       if(this.y === this.y0) {
         this.vy = -10
-        // this.jumpAudio.play()
+        this.jumpAudio.play()
       }
    }
 

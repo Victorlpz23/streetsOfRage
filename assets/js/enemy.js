@@ -24,6 +24,8 @@ class Enemy {
     this.punch.frames = 2
     this.punch.frameIndex = 0
     this.punch.tick = 0
+
+ 
  }
  
  draw() {
@@ -109,5 +111,13 @@ class Enemy {
             this.punch.frameIndex = 0
         }  
     }
+  
+  }
+
+
+  
+
+  isVisible() {
+    return this.x + this.w >= 0 && this.x <= this.ctx.canvas.width
   }
  }
