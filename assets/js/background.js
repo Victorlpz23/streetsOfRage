@@ -15,9 +15,10 @@ class Background {
     draw() {
      this.ctx.imageSmoothingEnabled = false
      this.ctx.drawImage(this.image, 0, 0, 250, 250, this.x, this.y, this.w, this.h)
-     this.ctx.drawImage(this.image, 0, 0, 200, 200, this.x + this.w, this.y, this.w, this.h)
+     this.ctx.drawImage(this.image, 0, 0, 250, 250, this.x + this.w, this.y, this.w, this.h)
     }
 
+    
     move() {
      this.x += this.vx
      this.y += this.vy

@@ -8,12 +8,12 @@ class Game {
 
         this.lf = new Life(ctx)
         this.interval = null
-        this.audio = new Audio("../assets/resources/Fighting.mp3")
-        this.audio.volume = 0.5
+        // this.audio = new Audio("../assets/resources/Fighting.mp3")
+        // this.audio.volume = 0.5
     }
 
     start() {
-      this.audio.play()
+      // this.audio.play()
       this.initListeners()
 
       this.interval = setInterval(() => {
@@ -31,10 +31,6 @@ class Game {
           this.checkCollisions(e.keyCode)
         }
 
-        // if(event.key ===  " "){
-        //   this.checkCollisions()
-        // }
-    
         document.onkeyup = (e) => {
           this.ax.onKeyUp(e.keyCode)
         }
@@ -42,7 +38,6 @@ class Game {
 
     addEnemy() {
       this.tick--
-      
       if (this.tick <= 0) {
         this.tick = 400 + Math.random() * 40
         this.en.push(new Enemy(this.ctx))
@@ -53,6 +48,14 @@ class Game {
      this.bg.move()
      this.ax.move() 
      this.en.forEach(e => e.move())
+
+     if(this.ax.x >= 400 && this.ax.vx > 0) {
+      this.bg.vx = -2.5
+      this.ax.vx = 1
+      this.ax.x = 400
+     } else {
+      this.bg.vx = 0
+     }
     }
 
     draw() {
@@ -85,5 +88,4 @@ class Game {
     
     }
 
-    
 }

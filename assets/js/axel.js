@@ -48,8 +48,8 @@ class Axel {
       this.punching.tick = 0
       this.animatePunchTick = 0
 
-      this.jumpAudio = new Audio('../assets/resources/jump.wav')
-      this.jumpAudio.volume = 0.5
+      // this.jumpAudio = new Audio('../assets/resources/jump.wav')
+      // this.jumpAudio.volume = 0.5
 
       this.isPunching = false
       let health = 100 
@@ -152,13 +152,16 @@ class Axel {
      if (this.y >= this.y0) {
       this.y = this.y0
       this.vy = 0
+
     } if (this.x <= 0) {
       this.vx = 0
       this.x = 0
+
     } if (this.x + this.w >= this.ctx.canvas.width) {
       this.vx = 0
       this.x = this.ctx.canvas.width - this.w
     }
+
     }
 
     animateWalk() {
@@ -213,7 +216,7 @@ class Axel {
     jump() {
       if(this.y === this.y0) {
         this.vy = -10
-        this.jumpAudio.play()
+        // this.jumpAudio.play()
       }
    }
 

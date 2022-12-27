@@ -1,7 +1,7 @@
 class Enemy {
  constructor(ctx) {
     this.ctx = ctx
-    this.x = 500
+    this.x = 600
     this.y = 200
     this.y0 = 200
     this.w = 90
@@ -77,8 +77,8 @@ class Enemy {
       }
   
       if (this.x + this.w >= this.ctx.canvas.width) {
-        this.vx = 0
-        this.x = this.ctx.canvas.width - this.w
+        this.vx = -1
+       
       }
 
       if (this.x === this.ax.x && this.y === this.ax.y) {
