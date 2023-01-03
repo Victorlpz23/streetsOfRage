@@ -1,5 +1,5 @@
 class Enemy {
- constructor(ctx) {
+  constructor(ctx) {
     this.ctx = ctx
     this.x = 600
     this.y = 200
@@ -11,7 +11,7 @@ class Enemy {
     this.vy = 0
     this.ax = 0
     this.ay = 0
-    
+
 
     this.img = new Image()
     this.img.src = "../assets/resources/enemy1.png"
@@ -25,13 +25,13 @@ class Enemy {
     this.punch.frameIndex = 0
     this.punch.tick = 0
 
- 
- }
- 
- draw() {
+
+  }
+
+  draw() {
     this.ctx.imageSmoothingEnabled = false
     if (this.vx < 0) {
-    this.ctx.drawImage(
+      this.ctx.drawImage(
         this.img,
         this.img.frameIndex * this.img.width / this.img.frames,
         0,
@@ -45,8 +45,8 @@ class Enemy {
       this.animateWalk()
     }
 
-      if (this.vx === 0) {
-        this.ctx.drawImage(
+    if (this.vx === 0) {
+      this.ctx.drawImage(
         this.punch,
         this.punch.frameIndex * this.punch.width / this.punch.frames,
         0,
@@ -57,67 +57,67 @@ class Enemy {
         140,
         this.h,
       )
-       this.animatePunch()
-      }
-
+      this.animatePunch()
     }
- 
- move() {
+
+  }
+
+  move() {
     this.x += this.vx
     this.y += this.vy
 
     if (this.y >= this.y0) {
-        this.y = this.y0
-        this.vy = 0
-      }
-  
-      if (this.x <= 0) {
-        this.vx = 0
-        this.x = 0
-      }
-  
-      if (this.x + this.w >= this.ctx.canvas.width) {
-        this.vx = -1
-       
-      }
+      this.y = this.y0
+      this.vy = 0
+    }
 
-      if (this.x === this.ax.x && this.y === this.ax.y) {
-        this.vx = 0
-      }
+    if (this.x <= 0) {
+      this.vx = 0
+      this.x = 0
+    }
+
+    if (this.x + this.w >= this.ctx.canvas.width) {
+      this.vx = -1
+
+    }
+
+    if (this.x === this.ax.x && this.y === this.ax.y) {
+      this.vx = 0
+    }
   }
- 
 
- animateWalk() {
+
+  animateWalk() {
     this.tick++
-    
+
     if (this.tick > 15) {
-        this.tick = 0
-        this.img.frameIndex++
-    
-        if (this.img.frameIndex > this.img.frames - 1) {
-            this.img.frameIndex = 0
-        }  
+      this.tick = 0
+      this.img.frameIndex++
+
+      if (this.img.frameIndex > this.img.frames - 1) {
+        this.img.frameIndex = 0
+      }
     }
   }
 
   animatePunch() {
     this.punch.tick++
-    
+
     if (this.punch.tick > 20) {
-        this.punch.tick = 0
-        this.punch.frameIndex++
-    
-        if (this.punch.frameIndex > this.punch.frames - 1) {
-            this.punch.frameIndex = 0
-        }  
+      this.punch.tick = 0
+      this.punch.frameIndex++
+
+      if (this.punch.frameIndex > this.punch.frames - 1) {
+        this.punch.frameIndex = 0
+      }
     }
-  
   }
 
 
-  
+
+
 
   isVisible() {
     return this.x + this.w >= 0 && this.x <= this.ctx.canvas.width
   }
- }
+}
