@@ -10,7 +10,7 @@ class Life {
     }
 
 
-    draw(health, lifes, points) {
+    draw(health) {
         this.ctx.fillStyle = 'black'
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, 60)
 
@@ -33,13 +33,10 @@ class Life {
 
         this.ctx.fillStyle = 'white'
         this.ctx.font = '18px press-start-2p'
-        this.ctx.fillText('1 UP-' + this.points , 20, 25)
+        this.ctx.fillText('1 UP-' + this.points.toString().padStart(6, "0") , 20, 25)
 
         this.ctx.fillStyle = 'white'
         this.ctx.font = '25px press-start-2p'
         this.ctx.fillText('x' + this.lifes, 223, 40)
-
     }
-
-
 }

@@ -1,10 +1,12 @@
 class Background {
   constructor(ctx) {
     this.ctx = ctx
-    this.x = 0
-    this.y = 60
+    this.xCanvas = 0
+    this.yCanvas = 60
     this.w = ctx.canvas.width
     this.h = ctx.canvas.height
+    this.xImage = 0
+    this.yImage = 0
     this.vx = 0
     this.vy = 0
 
@@ -14,17 +16,19 @@ class Background {
 
   draw() {
     this.ctx.imageSmoothingEnabled = false
-    this.ctx.drawImage(this.image, 0, 0, 250, 250, this.x, this.y, this.w, this.h)
-    this.ctx.drawImage(this.image, 0, 0, 250, 250, this.x + this.w, this.y, this.w, this.h)
+    this.ctx.drawImage(this.image, this.xImage, 0, 250, 250, this.xCanvas, this.yCanvas, this.w, this.h)
+    this.ctx.drawImage(this.image, this.xImage, 0, 250, 250, this.xCanvas + this.w, this.yCanvas, this.w, this.h)
   }
 
 
   move() {
-    this.x += this.vx
-    this.y += this.vy
+    this.yCanvas += this.vy
+    this.xImage += this.vx
 
-    if (this.x <= -this.w) {
-      this.x = 0
+    if (this.xImage >= this.w / 2) {
+      if(this.image.width <= this.xImage + 250) {
+        this.xImage = 0
+      }
     }
   }
 }

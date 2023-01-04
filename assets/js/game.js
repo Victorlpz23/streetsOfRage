@@ -8,13 +8,17 @@ class Game {
 
     this.lf = new Life(ctx)
     this.interval = null
-    // this.audio = new Audio("../assets/resources/Fighting.mp3")
-    // this.audio.volume = 0.5
+
+    // this.audioFight = new Audio("../assets/resources/Fighting.mp3")
+    // this.audioFight.volume = 0.5
+
+    // this.audioOver = new Audio("../../assets/resources/19 Game Over.mp3")
+    // this.audioOver.volume = 0.5
   }
 
   start() {
     this.stop()
-    // this.audio.play()
+    // this.audioFight.play()
     this.initListeners()
 
     this.interval = setInterval(() => {
@@ -51,7 +55,7 @@ class Game {
     this.en.forEach(e => e.move())
 
     if (this.ax.x >= 400 && this.ax.vx > 0) {
-      this.bg.vx = -2.5
+      this.bg.vx = 1.5
       this.ax.vx = 1
       this.ax.x = 400
     } else {
@@ -82,7 +86,7 @@ class Game {
         this.reduceHealth()
         
 
-        if (keyCode === SPACE) {
+        if (keyCode === SPACE || keyCode === C) {
           new Promise((resolve) => {
             setTimeout(resolve, 1000);
           }).then(() => {
@@ -113,6 +117,11 @@ class Game {
 
   gameOver() {
     this.stop()
+    this.ctx.fillStyle = 'white'
+    this.ctx.font = '80px press-start-2p'
+    this.ctx.fillText('GAME OVER', 70, 200)
+    // this.audioFight.pause()
+    // this.audioOver.play()
   }
 
 

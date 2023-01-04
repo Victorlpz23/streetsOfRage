@@ -24,8 +24,6 @@ class Enemy {
     this.punch.frames = 2
     this.punch.frameIndex = 0
     this.punch.tick = 0
-
-
   }
 
   draw() {
@@ -59,7 +57,6 @@ class Enemy {
       )
       this.animatePunch()
     }
-
   }
 
   move() {

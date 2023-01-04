@@ -18,6 +18,13 @@ class Axel {
     this.quiet.frameIndex = 0
     this.quiet.tick = 0
 
+    this.quietReverse = new Image()
+    this.quietReverse.src = "../../assets/resources/reverseAxel.png"
+    this.quietReverse.frames = 3
+    this.quietReverse.frameIndex = 0
+    this.quietReverse.tick = 0
+    this.isReverse = false
+
     this.walking = new Image()
     this.walking.src = "../assets/resources/axelMove.png"
     this.walking.frames = 4
@@ -48,17 +55,26 @@ class Axel {
     this.punching.frameIndex = 0
     this.punching.tick = 0
     this.animatePunchTick = 0
+    this.isPunching = false
+
+    this.kicking = new Image()
+    this.kicking.src = "../../assets/resources/kick.png"
+    this.kicking.frames = 2
+    this.kicking.frameIndex = 0
+    this.kicking.tick = 0
+    this.animateKickTick = 0
+    this.isKicking = false
 
     // this.jumpAudio = new Audio('../assets/resources/jump.wav')
     // this.jumpAudio.volume = 0.5
 
-    this.isPunching = false
+    
 
   }
 
   draw() {
     this.ctx.imageSmoothingEnabled = false
-    if (this.vx === 0 && this.y === this.y0 && this.isPunching === false) {
+    if (this.vx === 0 && this.y === this.y0 && this.isPunching === false && this.isKicking === false && this.isReverse === false) {
       this.ctx.drawImage(
         this.quiet,
         this.quiet.frameIndex * this.quiet.width / this.quiet.frames,
@@ -67,8 +83,21 @@ class Axel {
         this.quiet.height,
         this.x,
         this.y,
-        this.w,
+        110,
         this.h)
+        this.ctx.imageSmoothingEnabled = false
+    } if (this.isReverse === true && this.vx === 0 && this.y === this.y0 && this.isPunching === false && this.isKicking === false) {
+      this.ctx.drawImage(
+        this.quietReverse,
+        this.quietReverse.frameIndex * this.quietReverse.width / this.quietReverse.frames,
+        0,
+        this.quietReverse.width / this.quietReverse.frames,
+        this.quietReverse.height,
+        this.x,
+        this.y,
+        110,
+        this.h)
+       
 
     } if (this.vx > 0 && this.y === this.y0) {
       this.ctx.drawImage(
@@ -139,6 +168,24 @@ class Axel {
     } if (this.punching.tick > 45) {
       this.punching.tick = 0
       this.isPunching = false
+      
+    } if (this.isKicking === true && this.y === this.y0 && this.vx === 0) {
+      this.kicking.tick++
+      this.ctx.drawImage(
+      this.kicking,
+      this.kicking.frameIndex * this.kicking.width / this.kicking.frames,
+      0,
+      this.kicking.width / this.kicking.frames,
+      this.kicking.height,
+      this.x,
+      this.y,
+      140,
+      this.h)
+    this.kick()
+
+    } if (this.kicking.tick > 45) {
+     this.kicking.tick = 0
+     this.isKicking = false
     }
   }
 
@@ -233,16 +280,30 @@ class Axel {
     }
   }
 
+  kick() {
+    this.animateKickTick++
+    if (this.animateKickTick > 20) {
+      this.animateKickTick = 0
+      this.kicking.frameIndex++
+
+      if (this.kicking.frameIndex > this.kicking.frames - 1) {
+        this.kicking.frameIndex = 0
+      }
+    }
+  }
+
 
 
 
   onKeyDown(key) {
     switch (key) {
       case RIGHT:
-        this.vx = 5
+        this.vx = 5 
+        this.isReverse = false
         break;
       case LEFT:
         this.vx = -5
+        this.isReverse = true
         break;
       case UP:
         this.jump()
@@ -250,6 +311,8 @@ class Axel {
       case SPACE:
         this.isPunching = true
         break;
+      case C:
+        this.isKicking = true
     }
   }
 
