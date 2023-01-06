@@ -12,6 +12,9 @@ class Enemy {
     this.ax = 0
     this.ay = 0
 
+    this.isDeath = false
+    this.isDeathCounter = 0
+
 
     this.img = new Image()
     this.img.src = "../assets/resources/enemy1.png"
@@ -24,11 +27,17 @@ class Enemy {
     this.punch.frames = 2
     this.punch.frameIndex = 0
     this.punch.tick = 0
+
+    this.death = new Image()
+    this.death.src = "../../assets/resources/damageE.png"
+    this.death.frames = 3
+    this.death.frameIndex = 0
+    this.death.tick = 0
   }
 
   draw() {
     this.ctx.imageSmoothingEnabled = false
-    if (this.vx < 0) {
+    if (this.vx < 0 && this.isDeath === false) {
       this.ctx.drawImage(
         this.img,
         this.img.frameIndex * this.img.width / this.img.frames,
@@ -43,7 +52,7 @@ class Enemy {
       this.animateWalk()
     }
 
-    if (this.vx === 0) {
+    if (this.vx === 0 && this.isDeath === false) {
       this.ctx.drawImage(
         this.punch,
         this.punch.frameIndex * this.punch.width / this.punch.frames,
@@ -56,6 +65,21 @@ class Enemy {
         this.h,
       )
       this.animatePunch()
+    }
+
+    if (this.isDeath === true) {
+      this.ctx.drawImage(
+        this.death,
+        this.death.frameIndex * this.death.width / this.death.frames,
+        0,
+        this.death.width / this.death.frames,
+        this.death.height,
+        this.x,
+        this.y,
+        140,
+        this.h,
+      )
+      this.animateDeath()
     }
   }
 
@@ -97,6 +121,11 @@ class Enemy {
     }
   }
 
+
+  checkCollisions(ax) {
+    return this.x - 35 <= ax.x && ax.x <= this.x + 35
+  }
+
   animatePunch() {
     this.punch.tick++
 
@@ -110,11 +139,23 @@ class Enemy {
     }
   }
 
+  animateDeath() {
+    this.death.tick++
+
+    if (this.death.tick > 24) {
+      this.death.tick = 0
+      this.death.frameIndex++
+
+      if (this.death.frameIndex > this.death.frames - 1) {
+        this.death.frameIndex = 0
+      }
+    }
+  }
 
 
 
 
   isVisible() {
-    return this.x + this.w >= 0 && this.x <= this.ctx.canvas.width
+    return this.x + this.w >= 0 && this.x <= this.ctx.canvas.width && this.isDeathCounter < ENEMY_DEATH_DURATION
   }
 }

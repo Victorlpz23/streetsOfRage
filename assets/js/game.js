@@ -6,27 +6,29 @@ class Game {
     this.en = []
     this.tick = 60 * 5
 
-    this.lf = new Life(ctx)
+
     this.interval = null
 
-    // this.audioFight = new Audio("../assets/resources/Fighting.mp3")
-    // this.audioFight.volume = 0.5
+    this.audioFight = new Audio("../assets/resources/Fighting.mp3")
+    this.audioFight.volume = 0.2
 
-    // this.audioOver = new Audio("../../assets/resources/19 Game Over.mp3")
-    // this.audioOver.volume = 0.5
+    this.audioOver = new Audio("../../assets/resources/19 Game Over.mp3")
+    this.audioOver.volume = 0.2
   }
 
   start() {
     this.stop()
-    // this.audioFight.play()
+    this.audioFight.play()
     this.initListeners()
 
     this.interval = setInterval(() => {
       this.clear()
       this.draw()
       this.checkCollisions()
+      
       this.move()
       this.addEnemy()
+      this.gameOver()
     }, 1000 / 60)
   }
 
@@ -65,9 +67,9 @@ class Game {
 
   draw() {
     this.bg.draw()
-    this.ax.draw()
     this.en.forEach(e => e.draw())
-    this.lf.draw(this.ax.health)
+    this.ax.draw()
+    this.ax.lf.draw(this.ax.health)
   }
 
   clear() {
@@ -80,48 +82,40 @@ class Game {
       const e = this.en[i]
       const colX = e.x - 35 <= this.ax.x && this.ax.x <= e.x + 35
       const colY = this.ax.y === e.y
-      if (colX && colY) {
+      if (colX && colY && !e.isDeath) {
         e.vx = 0
         this.ax.vx = 0
-        this.reduceHealth()
-        
+        if (e.checkCollisions(this.ax)){
+          this.ax.reduceHealth()
+        } 
 
         if (keyCode === SPACE || keyCode === C) {
-          new Promise((resolve) => {
-            setTimeout(resolve, 1000);
-          }).then(() => {
-            this.en.splice(i, 1);
-            this.lf.points += 100
-          });
+          e.isDeath = true;
+          this.ax.lf.points += 100
         }
+         
+      }
+      if (e.isDeath && e.isDeathCounter < ENEMY_DEATH_DURATION){
+        e.isDeathCounter++
       }
     }
   }
 
-  reduceHealth() {
-    if(this.ax.health >= 0) {
-      this.ax.health -= 0.5
-    }
-    if(this.ax.health === 0) {
-      this.ax.health = 200
-      this.lf.lifes -= 1
-    }
-    if (this.lf.lifes < 0){
-      this.gameOver()
-    }
-  }
+  
 
   stop() {
       clearInterval(this.interval)
   }
 
   gameOver() {
-    this.stop()
-    this.ctx.fillStyle = 'white'
-    this.ctx.font = '80px press-start-2p'
-    this.ctx.fillText('GAME OVER', 70, 200)
-    // this.audioFight.pause()
-    // this.audioOver.play()
+    if (this.ax.lf.lifes < 0){
+      this.stop()
+      this.ctx.fillStyle = 'white'
+      this.ctx.font = '80px press-start-2p'
+      this.ctx.fillText('GAME OVER', 70, 200)
+      this.audioFight.pause()
+      this.audioOver.play()
+    }
   }
 
 

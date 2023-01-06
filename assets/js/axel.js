@@ -11,6 +11,7 @@ class Axel {
     this.ax = 0
     this.ay = 0.5
     this.health = 200
+    this.lf = new Life(ctx)
 
     this.quiet = new Image()
     this.quiet.src = "../assets/resources/Axel1.png"
@@ -65,8 +66,8 @@ class Axel {
     this.animateKickTick = 0
     this.isKicking = false
 
-    // this.jumpAudio = new Audio('../assets/resources/jump.wav')
-    // this.jumpAudio.volume = 0.5
+    this.jumpAudio = new Audio('../assets/resources/jump.wav')
+    this.jumpAudio.volume = 0.3
 
     
 
@@ -151,7 +152,7 @@ class Axel {
         this.h)
       this.animateJumpRe()
 
-    } if (this.isPunching === true && this.y === this.y0 && this.vx === 0) {
+    } if (this.isPunching === true && this.y === this.y0 && this.vx === 0 && this.isKicking === false) {
       this.punching.tick++
       this.ctx.drawImage(
         this.punching,
@@ -183,7 +184,7 @@ class Axel {
       this.h)
     this.kick()
 
-    } if (this.kicking.tick > 45) {
+    } if (this.kicking.tick > 35) {
      this.kicking.tick = 0
      this.isKicking = false
     }
@@ -264,7 +265,7 @@ class Axel {
   jump() {
     if (this.y === this.y0) {
       this.vy = -10
-      // this.jumpAudio.play()
+      this.jumpAudio.play()
     }
   }
 
@@ -292,8 +293,15 @@ class Axel {
     }
   }
 
-
-
+  reduceHealth() {
+    if(this.health >= 0) {
+      this.health -= 0.5
+    }
+    if(this.health === 0) {
+      this.health = 200
+      this.lf.lifes -= 1
+    }
+  }
 
   onKeyDown(key) {
     switch (key) {
