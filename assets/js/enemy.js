@@ -80,6 +80,8 @@ class Enemy {
         this.h,
       )
       this.animateDeath()
+      this.x += 2
+      this.y0 += 5
     }
   }
 
@@ -129,7 +131,7 @@ class Enemy {
   animatePunch() {
     this.punch.tick++
 
-    if (this.punch.tick > 20) {
+    if (this.punch.tick > 15) {
       this.punch.tick = 0
       this.punch.frameIndex++
 
@@ -142,13 +144,9 @@ class Enemy {
   animateDeath() {
     this.death.tick++
 
-    if (this.death.tick > 24) {
+    if (this.death.tick > 10) {
       this.death.tick = 0
       this.death.frameIndex++
-
-      if (this.death.frameIndex > this.death.frames - 1) {
-        this.death.frameIndex = 0
-      }
     }
   }
 

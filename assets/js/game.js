@@ -14,6 +14,12 @@ class Game {
 
     this.audioOver = new Audio("../../assets/resources/19 Game Over.mp3")
     this.audioOver.volume = 0.2
+
+    this.audioDie = new Audio("../../assets/resources/enemyDie.wav")
+    this.audioDie.volume = 0.2
+
+    this.audioHit = new Audio('../../assets/resources/hit.wav')
+    this.audioHit.volume = 0.3 
   }
 
   start() {
@@ -91,6 +97,8 @@ class Game {
 
         if (keyCode === SPACE || keyCode === C) {
           e.isDeath = true;
+          this.audioHit.play()
+          this.audioDie.play()
           this.ax.lf.points += 100
         }
          
@@ -117,6 +125,5 @@ class Game {
       this.audioOver.play()
     }
   }
-
 
 }

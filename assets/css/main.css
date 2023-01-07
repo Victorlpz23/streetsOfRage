@@ -5,17 +5,54 @@ body {
   margin: 0;
   padding: 0;
   background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 
 .container {
-  text-align: center;
+  align-content: center;
   padding-top: 150px;
-  padding-left: 600px;
+  position: relative;
+}
+
+#welcome {
+  background-image: url("../../assets/resources/startback.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 334px;
+  width: 2000px;
 }
 
 
-canvas {
+.game {
   border: 1px solid white;
   display: none;
+  text-align: center;
+}
+
+.start-btn {
+  position: absolute;
+  top: 400px;
+  left: 942px;
+  cursor: pointer;
+}
+
+.start-btn:hover {
+  background-color:darkred;
+}
+
+#musicoff {
+  cursor: pointer;
+}
+
+#musicoff:hover {
+  background-color:darkred;
+}
+
+.hidden {
+  visibility: hidden;
 }

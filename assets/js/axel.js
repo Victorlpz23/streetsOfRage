@@ -21,7 +21,7 @@ class Axel {
 
     this.quietReverse = new Image()
     this.quietReverse.src = "../../assets/resources/reverseAxel.png"
-    this.quietReverse.frames = 3
+    this.quietReverse.frames = 1
     this.quietReverse.frameIndex = 0
     this.quietReverse.tick = 0
     this.isReverse = false
@@ -69,6 +69,14 @@ class Axel {
     this.jumpAudio = new Audio('../assets/resources/jump.wav')
     this.jumpAudio.volume = 0.3
 
+    this.hitAudio = new Audio('../../assets/resources/hit.wav')
+    this.hitAudio.volume = 0.3 
+    
+    this.punchAudio = new Audio('../../assets/resources/punch.wav')
+    this.punchAudio.volume = 0.3 
+
+    this.quitLifeAudio = new Audio('../../assets/resources/quitLife.wav')
+    this.quitLifeAudio.volume = 0.3 
     
 
   }
@@ -300,6 +308,7 @@ class Axel {
     if(this.health === 0) {
       this.health = 200
       this.lf.lifes -= 1
+      this.quitLifeAudio.play()
     }
   }
 
@@ -317,10 +326,12 @@ class Axel {
         this.jump()
         break;
       case SPACE:
+        this.punchAudio.play()
         this.isPunching = true
         break;
       case C:
         this.isKicking = true
+        this.punchAudio.play()
     }
   }
 
