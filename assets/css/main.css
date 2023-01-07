@@ -19,7 +19,7 @@ body {
 }
 
 #welcome {
-  background-image: url("../../assets/resources/startback.png");
+  background-image: url("assets/resources/startback.png");
   display: flex;
   justify-content: center;
   align-items: center;
