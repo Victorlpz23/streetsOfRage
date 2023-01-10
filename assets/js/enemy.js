@@ -125,7 +125,7 @@ class Enemy {
 
 
   checkCollisions(ax) {
-    return this.x - 35 <= ax.x && ax.x <= this.x + 35
+    return this.x - 45 <= ax.x && ax.x <= this.x + 45
   }
 
   animatePunch() {

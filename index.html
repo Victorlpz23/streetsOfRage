@@ -9,16 +9,33 @@
 </head>
 <body>
     <div class="container">
-        <div id="welcome" img src="assets/resources/startback.png" style="visibility: hidden">
-            <img src="./assets/resources/logo.png" style="width: 400px; height: 125px">
-            <br>
+        <div id="welcome">
             <button class="start-btn" id="start-btn">PRESS START</button>
         </div>
       <canvas class="game" id="game" width="600" height="350"></canvas>
       </div>
       <div>
-        <button class="hidden" id="musicoff"> Music OFF</button>
+        <button class="hidden" id="musicoff"> Sound OFF</button>
       </div>
+      <div>
+        <button class="hidden" id="musicon"> Sound ON</button>
+      </div>
+      <div class="hidden" id="instructions">
+        <h2>Keyboard Movements</h2>
+        <ul>
+          <li>Right Arrow: Move right</li>
+          <li>Left Arrow: Move left</li>
+          <li>Up Arrow: Jump</li>
+          <li>Spacebar: Punch</li>
+          <li>C Key: Kick</li>
+        </ul>
+      </div>
+
+      
+    
+
+      
+  
       
 
 
@@ -27,6 +44,7 @@
     <script src="./assets/js/background.js"></script>
     <script src="./assets/js/life.js"></script>
     <script src="./assets/js/enemy.js"></script>
+    <script src="./assets/js/enemyGirl.js"></script>
     <script src="./assets/js/axel.js"></script>
     <script src="./assets/js/game.js"></script>
     <script src="./assets/js/main.js"></script>

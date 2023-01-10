@@ -4,7 +4,10 @@ class Game {
     this.bg = new Background(ctx)
     this.ax = new Axel(ctx)
     this.en = []
+    this.enG = []
     this.tick = 60 * 5
+    this.tickGirl = 40 * 5
+
 
 
     this.interval = null
@@ -18,7 +21,10 @@ class Game {
     this.audioDie = new Audio("../../assets/resources/enemyDie.wav")
     this.audioDie.volume = 0.2
 
-    this.audioHit = new Audio('../../assets/resources/hit.wav')
+    this.audioDieGirl = new Audio("../../assets/resources/girlDie.wav")
+    this.audioDieGirl.volume = 0.2
+
+    this.audioHit = new Audio("../../assets/resources/hit.wav")
     this.audioHit.volume = 0.3 
   }
 
@@ -31,9 +37,9 @@ class Game {
       this.clear()
       this.draw()
       this.checkCollisions()
-      
       this.move()
       this.addEnemy()
+      this.addEnemyGirl()
       this.gameOver()
     }, 1000 / 60)
   }
@@ -57,15 +63,24 @@ class Game {
     }
   }
 
+  addEnemyGirl() {
+    this.tickGirl--
+    if (this.tickGirl <= 0) {
+      this.tickGirl = 400 + Math.random() * 40
+      this.enG.push(new EnemyGirl(this.ctx))
+    }
+  }
+
   move() {
     this.bg.move()
     this.ax.move()
     this.en.forEach(e => e.move())
+    this.enG.forEach(eg => eg.move())
 
-    if (this.ax.x >= 400 && this.ax.vx > 0) {
+    if (this.ax.x >= 250 && this.ax.vx > 0) {
       this.bg.vx = 1.5
       this.ax.vx = 1
-      this.ax.x = 400
+      this.ax.x = 250
     } else {
       this.bg.vx = 0
     }
@@ -74,20 +89,22 @@ class Game {
   draw() {
     this.bg.draw()
     this.en.forEach(e => e.draw())
+    this.enG.forEach(eg => eg.draw())
     this.ax.draw()
     this.ax.lf.draw(this.ax.health)
   }
 
   clear() {
     this.en = this.en.filter(e => e.isVisible())
+    this.enG = this.enG.filter(eg => eg.isVisible())
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
   }
 
   checkCollisions(keyCode) {
     for (let i = 0; i < this.en.length; i++) {
       const e = this.en[i]
-      const colX = e.x - 35 <= this.ax.x && this.ax.x <= e.x + 35
-      const colY = this.ax.y === e.y
+      const colX = e.x - 45 <= this.ax.x && this.ax.x <= e.x + 45
+      const colY = this.ax.y === e.y 
       if (colX && colY && !e.isDeath) {
         e.vx = 0
         this.ax.vx = 0
@@ -95,7 +112,7 @@ class Game {
           this.ax.reduceHealth()
         } 
 
-        if (keyCode === SPACE || keyCode === C) {
+        if (keyCode === SPACE || keyCode === C || keyCode === V) {
           e.isDeath = true;
           this.audioHit.play()
           this.audioDie.play()
@@ -107,9 +124,32 @@ class Game {
         e.isDeathCounter++
       }
     }
+
+    for (let i = 0; i < this.enG.length; i++) {
+      const eg = this.enG[i] 
+      const colXg = eg.x - 45 <= this.ax.x && this.ax.x <= eg.x + 45
+      const colYg = this.ax.y === eg.y
+      if (colXg && colYg && !eg.isDeath) {
+        eg.vx = 0
+        this.ax.vx = 0
+        if (eg.checkCollisions(this.ax)){
+          this.ax.reduceHealth()
+        } 
+
+        if (keyCode === SPACE || keyCode === C || keyCode === V) {
+          eg.isDeath = true;
+          this.audioHit.play()
+          this.audioDieGirl.play()
+          this.ax.lf.points += 100
+        }
+         
+      }
+      if (eg.isDeath && eg.isDeathCounter < ENEMY_DEATH_DURATION){
+        eg.isDeathCounter++
+      }
+    }
   }
 
-  
 
   stop() {
       clearInterval(this.interval)

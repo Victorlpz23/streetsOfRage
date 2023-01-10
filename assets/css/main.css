@@ -4,22 +4,25 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  background: black;
+  background-color: black;
+  background-image: url("../resources/logo.png");
+  background-size: 800px;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-position-y: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-
 .container {
   align-content: center;
-  padding-top: 150px;
   position: relative;
 }
 
 #welcome {
-  background-image: url("./assets/resources/startback.png");
+  background-image: url("../resources/startback.png"); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +39,7 @@ body {
 
 .start-btn {
   position: absolute;
-  top: 400px;
+  top: 261px;
   left: 942px;
   cursor: pointer;
 }
@@ -53,6 +56,32 @@ body {
   background-color:darkred;
 }
 
+#musicon {
+  cursor: pointer;
+}
+
+#musicon:hover {
+  background-color:darkred;
+}
+
 .hidden {
   visibility: hidden;
+}
+
+#pause {
+  cursor: pointer;
+}
+
+#pause:hover {
+  background-color:darkred;
+}
+
+#instructions {
+  position: absolute;
+  text-align: left;
+  right: 345px; 
+  color: white; 
+  font-size: 21px;
+  font-style: italic;
+  font: "press-start-2p";
 }

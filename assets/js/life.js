@@ -7,8 +7,18 @@ class Life {
         this.h = 0
         this.lifes = 3
         this.points = 0
+        this.seconds = 0
     }
 
+    // updateSeconds() {
+    //     this.seconds++;
+    //     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    //     this.draw();
+    // }
+
+    // startTimer() {
+    //     setInterval(() => this.updateSeconds(), 10000);
+    // }
 
     draw(health) {
         this.ctx.fillStyle = 'black'
@@ -21,8 +31,9 @@ class Life {
         this.ctx.fillStyle = 'white'
         this.ctx.font = '15px press-start-2p'
         this.ctx.fillText('PRESS 2UP START', 400, 35)
-        this.ctx.font = '20px press-start-2p'
-        this.ctx.fillText('TIME', 280, 20)
+
+        // this.ctx.font = '20px press-start-2p'
+        // this.ctx.fillText('TIME', 280, 20)
 
         this.ctx.fillStyle = 'white'
         this.ctx.fillRect(20, 30, 200, 10)
@@ -38,5 +49,11 @@ class Life {
         this.ctx.fillStyle = 'white'
         this.ctx.font = '25px press-start-2p'
         this.ctx.fillText('x' + this.lifes, 223, 40)
+
+        // this.ctx.font = '35px press-start-2p'
+        // this.ctx.fillText(this.seconds, 295, 50)
     }
+
+
+
 }

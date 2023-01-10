@@ -58,6 +58,7 @@ class Axel {
     this.animatePunchTick = 0
     this.isPunching = false
 
+
     this.kicking = new Image()
     this.kicking.src = "../../assets/resources/kick.png"
     this.kicking.frames = 2
@@ -65,6 +66,7 @@ class Axel {
     this.kicking.tick = 0
     this.animateKickTick = 0
     this.isKicking = false
+
 
     this.jumpAudio = new Audio('../assets/resources/jump.wav')
     this.jumpAudio.volume = 0.3
@@ -95,6 +97,7 @@ class Axel {
         110,
         this.h)
         this.ctx.imageSmoothingEnabled = false
+
     } if (this.isReverse === true && this.vx === 0 && this.y === this.y0 && this.isPunching === false && this.isKicking === false) {
       this.ctx.drawImage(
         this.quietReverse,
@@ -170,9 +173,14 @@ class Axel {
         this.punching.height,
         this.x,
         this.y,
-        this.w,
+        110,
         this.h)
-      this.punch()
+        if (this.isReverse === true) {
+          this.punching.src = "../../assets/resources/punchReverse.png"
+        } else {
+          this.punching.src = "../../assets/resources/punch.png"
+        }
+        this.punch()
 
     } if (this.punching.tick > 45) {
       this.punching.tick = 0
@@ -190,14 +198,19 @@ class Axel {
       this.y,
       140,
       this.h)
-    this.kick()
+
+      if (this.isReverse === true) {
+        this.kicking.src = "../../assets/resources/kickReverse.png"
+      } else {
+        this.kicking.src = "../../assets/resources/kick.png"
+      }
+      this.kick()
 
     } if (this.kicking.tick > 35) {
      this.kicking.tick = 0
      this.isKicking = false
     }
   }
-
 
 
   move() {
@@ -301,6 +314,8 @@ class Axel {
     }
   }
 
+
+
   reduceHealth() {
     if(this.health >= 0) {
       this.health -= 0.5
@@ -332,6 +347,7 @@ class Axel {
       case C:
         this.isKicking = true
         this.punchAudio.play()
+        break;
     }
   }
 
@@ -341,9 +357,6 @@ class Axel {
       case LEFT:
         this.vx = 0
         break;
-      // case SPACE:
-      //   this.isPunching = false
-      //   break;
     }
   }
 
