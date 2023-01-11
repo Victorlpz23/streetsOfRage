@@ -14,7 +14,7 @@ class Axel {
     this.lf = new Life(ctx)
 
     this.quiet = new Image()
-    this.quiet.src = "assets/resources/Axel1.png"
+    this.quiet.src = "assets/resources/Axel.png"
     this.quiet.frames = 1
     this.quiet.frameIndex = 0
     this.quiet.tick = 0
@@ -96,7 +96,6 @@ class Axel {
         this.y,
         110,
         this.h)
-        this.ctx.imageSmoothingEnabled = false
 
     } if (this.isReverse === true && this.vx === 0 && this.y === this.y0 && this.isPunching === false && this.isKicking === false) {
       this.ctx.drawImage(
