@@ -112,7 +112,7 @@ class Game {
           this.ax.reduceHealth()
         } 
 
-        if (keyCode === SPACE || keyCode === C || keyCode === V) {
+        if (keyCode === SPACE || keyCode === C) {
           e.isDeath = true;
           this.audioHit.play()
           this.audioDie.play()
@@ -136,7 +136,7 @@ class Game {
           this.ax.reduceHealth()
         } 
 
-        if (keyCode === SPACE || keyCode === C || keyCode === V) {
+        if (keyCode === SPACE || keyCode === C) {
           eg.isDeath = true;
           this.audioHit.play()
           this.audioDieGirl.play()
