@@ -17,19 +17,19 @@ class Enemy {
 
 
     this.img = new Image()
-    this.img.src = "../assets/resources/enemy1.png"
+    this.img.src = "assets/resources/enemy1.png"
     this.img.frames = 4
     this.img.frameIndex = 0
     this.tick = 0
 
     this.punch = new Image()
-    this.punch.src = "../../assets/resources/ePunch.png"
+    this.punch.src = "assets/resources/ePunch.png"
     this.punch.frames = 2
     this.punch.frameIndex = 0
     this.punch.tick = 0
 
     this.death = new Image()
-    this.death.src = "../../assets/resources/damageE.png"
+    this.death.src = "assets/resources/damageE.png"
     this.death.frames = 3
     this.death.frameIndex = 0
     this.death.tick = 0
@@ -76,7 +76,7 @@ class Enemy {
         this.death.height,
         this.x,
         this.y,
-        140,
+        180,
         this.h,
       )
       this.animateDeath()

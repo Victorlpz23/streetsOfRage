@@ -14,44 +14,44 @@ class Axel {
     this.lf = new Life(ctx)
 
     this.quiet = new Image()
-    this.quiet.src = "../assets/resources/Axel1.png"
+    this.quiet.src = "assets/resources/Axel1.png"
     this.quiet.frames = 3
     this.quiet.frameIndex = 0
     this.quiet.tick = 0
 
     this.quietReverse = new Image()
-    this.quietReverse.src = "../../assets/resources/reverseAxel.png"
+    this.quietReverse.src = "assets/resources/reverseAxel.png"
     this.quietReverse.frames = 1
     this.quietReverse.frameIndex = 0
     this.quietReverse.tick = 0
     this.isReverse = false
 
     this.walking = new Image()
-    this.walking.src = "../assets/resources/axelMove.png"
+    this.walking.src = "assets/resources/axelMove.png"
     this.walking.frames = 4
     this.walking.frameIndex = 0
     this.walking.tick = 0
 
     this.back = new Image()
-    this.back.src = "../assets/resources/reversemove.png"
+    this.back.src = "assets/resources/reversemove.png"
     this.back.frames = 4
     this.back.frameIndex = 0
     this.back.tick = 0
 
     this.jumpImg = new Image()
-    this.jumpImg.src = "../../assets/resources/jump.png"
+    this.jumpImg.src = "assets/resources/jump.png"
     this.jumpImg.frames = 2
     this.jumpImg.frameIndex = 0
     this.jumpImg.tick = 0
 
     this.jumpRe = new Image()
-    this.jumpRe.src = "../../assets/resources/jumpReverse.png"
+    this.jumpRe.src = "assets/resources/jumpReverse.png"
     this.jumpRe.frames = 2
     this.jumpRe.frameIndex = 0
     this.jumpRe.tick = 0
 
     this.punching = new Image()
-    this.punching.src = "../../assets/resources/punch.png"
+    this.punching.src = "assets/resources/punch.png"
     this.punching.frames = 2
     this.punching.frameIndex = 0
     this.punching.tick = 0
@@ -60,7 +60,7 @@ class Axel {
 
 
     this.kicking = new Image()
-    this.kicking.src = "../../assets/resources/kick.png"
+    this.kicking.src = "assets/resources/kick.png"
     this.kicking.frames = 2
     this.kicking.frameIndex = 0
     this.kicking.tick = 0
@@ -68,16 +68,16 @@ class Axel {
     this.isKicking = false
 
 
-    this.jumpAudio = new Audio('../assets/resources/jump.wav')
+    this.jumpAudio = new Audio('assets/resources/jump.wav')
     this.jumpAudio.volume = 0.3
 
-    this.hitAudio = new Audio('../../assets/resources/hit.wav')
+    this.hitAudio = new Audio('assets/resources/hit.wav')
     this.hitAudio.volume = 0.3 
     
-    this.punchAudio = new Audio('../../assets/resources/punch.wav')
+    this.punchAudio = new Audio('assets/resources/punch.wav')
     this.punchAudio.volume = 0.3 
 
-    this.quitLifeAudio = new Audio('../../assets/resources/quitLife.wav')
+    this.quitLifeAudio = new Audio('assets/resources/quitLife.wav')
     this.quitLifeAudio.volume = 0.3 
     
 
@@ -176,9 +176,9 @@ class Axel {
         110,
         this.h)
         if (this.isReverse === true) {
-          this.punching.src = "../../assets/resources/punchReverse.png"
+          this.punching.src = "assets/resources/punchReverse.png"
         } else {
-          this.punching.src = "../../assets/resources/punch.png"
+          this.punching.src = "assets/resources/punch.png"
         }
         this.punch()
 
@@ -200,9 +200,9 @@ class Axel {
       this.h)
 
       if (this.isReverse === true) {
-        this.kicking.src = "../../assets/resources/kickReverse.png"
+        this.kicking.src = "assets/resources/kickReverse.png"
       } else {
-        this.kicking.src = "../../assets/resources/kick.png"
+        this.kicking.src = "assets/resources/kick.png"
       }
       this.kick()
 

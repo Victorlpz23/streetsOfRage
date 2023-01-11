@@ -16,19 +16,19 @@ class EnemyGirl {
       this.isDeathCounter = 0
 
       this.img = new Image()
-      this.img.src = "../assets/resources/enemyGirl.png"
+      this.img.src = "assets/resources/enemyGirl.png"
       this.img.frames = 4
       this.img.frameIndex = 0
       this.tick = 0
 
       this.punch = new Image()
-      this.punch.src = "../../assets/resources/girlPunch.png"
+      this.punch.src = "assets/resources/girlPunch.png"
       this.punch.frames = 2
       this.punch.frameIndex = 0
       this.punch.tick = 0
   
       this.death = new Image()
-      this.death.src = "../../assets/resources/damageGirl.png"
+      this.death.src = "assets/resources/damageGirl.png"
       this.death.frames = 3
       this.death.frameIndex = this.death.frames - 1
       this.death.tick = 0
@@ -92,11 +92,6 @@ class EnemyGirl {
           this.y = this.y0
           this.vy = 0
         }
-    
-        // if (this.x <= 0) {
-        //   this.vx = 0
-        //   this.x = 0
-        // }
     
         if (this.x + this.w >= this.ctx.canvas.width) {
           this.vx = 1

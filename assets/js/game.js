@@ -12,19 +12,19 @@ class Game {
 
     this.interval = null
 
-    this.audioFight = new Audio("../assets/resources/Fighting.mp3")
+    this.audioFight = new Audio("assets/resources/Fighting.mp3")
     this.audioFight.volume = 0.2
 
-    this.audioOver = new Audio("../../assets/resources/19 Game Over.mp3")
+    this.audioOver = new Audio("assets/resources/19 Game Over.mp3")
     this.audioOver.volume = 0.2
 
-    this.audioDie = new Audio("../../assets/resources/enemyDie.wav")
+    this.audioDie = new Audio("assets/resources/enemyDie.wav")
     this.audioDie.volume = 0.2
 
-    this.audioDieGirl = new Audio("../../assets/resources/girlDie.wav")
+    this.audioDieGirl = new Audio("assets/resources/girlDie.wav")
     this.audioDieGirl.volume = 0.2
 
-    this.audioHit = new Audio("../../assets/resources/hit.wav")
+    this.audioHit = new Audio("assets/resources/hit.wav")
     this.audioHit.volume = 0.3 
   }
 

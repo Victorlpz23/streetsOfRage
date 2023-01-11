@@ -7,18 +7,8 @@ class Life {
         this.h = 0
         this.lifes = 3
         this.points = 0
-        this.seconds = 0
     }
 
-    // updateSeconds() {
-    //     this.seconds++;
-    //     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-    //     this.draw();
-    // }
-
-    // startTimer() {
-    //     setInterval(() => this.updateSeconds(), 10000);
-    // }
 
     draw(health) {
         this.ctx.fillStyle = 'black'
