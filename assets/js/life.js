@@ -40,8 +40,6 @@ class Life {
         this.ctx.font = '25px press-start-2p'
         this.ctx.fillText('x' + this.lifes, 223, 40)
 
-        // this.ctx.font = '35px press-start-2p'
-        // this.ctx.fillText(this.seconds, 295, 50)
     }
 
 

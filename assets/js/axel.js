@@ -15,7 +15,7 @@ class Axel {
 
     this.quiet = new Image()
     this.quiet.src = "assets/resources/Axel1.png"
-    this.quiet.frames = 3
+    this.quiet.frames = 1
     this.quiet.frameIndex = 0
     this.quiet.tick = 0
 
